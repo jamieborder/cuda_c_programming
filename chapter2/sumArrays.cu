@@ -70,8 +70,10 @@ int main( int argc, char **argv )
     sumArraysOnHost( h_A, h_B, h_C, nElem );
     cpuElapsed = cpuSecond() - startTime;
 
-    dim3 block = 256;    // number of warps per block
-    dim3 grid = (nElem + block.x - 1) / block.x;    // number of blocks in grid
+    //dim3 block = 256;    // number of warps per block
+    //dim3 grid = (nElem + block.x - 1) / block.x;    // number of blocks in grid
+    dim3 block(256,1,1);    // number of warps per block
+    dim3 grid((nElem + block.x - 1) / block.x,1,1);    // number of blocks in grid
     printf("block = %i\n", block.x);
     printf("grid  = %i\n", grid.x);
     printf("total launched = %i\n", block.x * grid.x);
